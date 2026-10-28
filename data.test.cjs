@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const {validate,escape}=require('./data-core.js');
+const seed=JSON.parse(fs.readFileSync('data/demo.json','utf8'));
+const copy=()=>structuredClone(seed);
+assert.equal(validate(seed).profiles.length,4);
+let x=copy();x.profiles[0].name='수정된 가상 이름';x.profiles[0].scores.total=99;assert.equal(validate(x).profiles[0].scores.total,99);assert.equal(seed.profiles[0].name,'하늘');
+x=copy();x.profiles[0].scores.total=101;assert.throws(()=>validate(x),/0~100/);
+x=copy();x.profiles[0].elements.wood=100;assert.throws(()=>validate(x),/합계/);
+x=copy();x.matches[0].b='missing';assert.throws(()=>validate(x),/기존 프로필/);
+x=copy();x.profiles.push({...x.profiles[0]});assert.throws(()=>validate(x),/중복/);
+x=copy();x.profiles[0].birthDate='2025-02-30';assert.throws(()=>validate(x),/날짜/);
+x=copy();x.profiles[0].birthTime='24:00';assert.throws(()=>validate(x),/HH:MM/);
+x=copy();x.profiles[0].weekly=[1];assert.throws(()=>validate(x),/7개/);
+assert.deepEqual(validate({schemaVersion:1,profiles:[],matches:[],events:[]}).profiles,[]);
+assert.ok(!escape('<img src=x onerror="alert(1)">').includes('<'));
+console.log('PASS: schema, immutable import, score ranges, element sum, foreign IDs, duplicate IDs, date/time, weekly lengths, empty state and HTML escaping');

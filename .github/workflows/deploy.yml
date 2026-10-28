@@ -21,7 +21,8 @@ jobs:
       - name: Prepare website
         run: |
           mkdir _site
-          cp index.html style.css app.js _site/
+          cp index.html garden.html style.css app.js dashboard.css dashboard.js data-core.js _site/
+          cp -r data _site/data
           cp -r assets _site/assets
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5

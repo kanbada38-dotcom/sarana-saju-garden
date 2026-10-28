@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "profiles": [
+    {
+      "id": "p1",
+      "name": "하늘",
+      "birthDate": "1994-03-12",
+      "birthTime": "09:30",
+      "element": "목",
+      "tagline": "가능성을 키우는 정원사",
+      "scores": {
+        "total": 86,
+        "love": 82,
+        "work": 90,
+        "money": 78
+      },
+      "elements": {
+        "wood": 35,
+        "fire": 20,
+        "earth": 15,
+        "metal": 10,
+        "water": 20
+      },
+      "weekly": [
+        65,
+        72,
+        68,
+        80,
+        76,
+        85,
+        82
+      ],
+      "memo": "내가 바꿀 수 있는 일 한 가지에 집중하기."
+    },
+    {
+      "id": "p2",
+      "name": "달빛",
+      "birthDate": "1989-11-24",
+      "birthTime": "09:30",
+      "element": "수",
+      "tagline": "지혜를 품은 달빛 호수",
+      "scores": {
+        "total": 79,
+        "love": 88,
+        "work": 74,
+        "money": 80
+      },
+      "elements": {
+        "wood": 15,
+        "fire": 10,
+        "earth": 20,
+        "metal": 20,
+        "water": 35
+      },
+      "weekly": [
+        68,
+        74,
+        71,
+        78,
+        77,
+        84,
+        83
+      ],
+      "memo": "내가 바꿀 수 있는 일 한 가지에 집중하기."
+    },
+    {
+      "id": "p3",
+      "name": "새벽",
+      "birthDate": "1997-07-08",
+      "birthTime": "09:30",
+      "element": "화",
+      "tagline": "온기를 전하는 등불",
+      "scores": {
+        "total": 92,
+        "love": 90,
+        "work": 85,
+        "money": 83
+      },
+      "elements": {
+        "wood": 20,
+        "fire": 35,
+        "earth": 15,
+        "metal": 20,
+        "water": 10
+      },
+      "weekly": [
+        71,
+        76,
+        74,
+        76,
+        78,
+        83,
+        84
+      ],
+      "memo": "내가 바꿀 수 있는 일 한 가지에 집중하기."
+    },
+    {
+      "id": "p4",
+      "name": "바람",
+      "birthDate": "1991-09-16",
+      "birthTime": "09:30",
+      "element": "금",
+      "tagline": "길을 밝히는 나침반",
+      "scores": {
+        "total": 74,
+        "love": 72,
+        "work": 88,
+        "money": 82
+      },
+      "elements": {
+        "wood": 10,
+        "fire": 15,
+        "earth": 20,
+        "metal": 40,
+        "water": 15
+      },
+      "weekly": [
+        74,
+        78,
+        77,
+        74,
+        79,
+        82,
+        85
+      ],
+      "memo": "내가 바꿀 수 있는 일 한 가지에 집중하기."
+    }
+  ],
+  "matches": [
+    {
+      "id": "m1",
+      "a": "p1",
+      "b": "p2",
+      "score": 87,
+      "note": "차이를 호기심으로 바라보는 대화를 나눠보세요."
+    },
+    {
+      "id": "m2",
+      "a": "p1",
+      "b": "p3",
+      "score": 81,
+      "note": "함께 시작하고 싶은 작은 일을 정해보세요."
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "date": "2026-10-28",
+      "title": "고요한 호흡 10분",
+      "category": "명상",
+      "note": "하루의 시작에 마음의 속도를 낮추기."
+    },
+    {
+      "id": "e2",
+      "date": "2026-10-30",
+      "title": "관계 돌아보기",
+      "category": "관계",
+      "note": "고마운 마음을 한 사람에게 전하기."
+    },
+    {
+      "id": "e3",
+      "date": "2026-11-01",
+      "title": "새달의 의도 적기",
+      "category": "기록",
+      "note": "이번 달 가꾸고 싶은 것 한 가지."
+    }
+  ]
+}

@@ -1,33 +1,45 @@
-# 사라나의 운명정원 · 月下命園
+# 사라나 운명 프로그램 · 운명정원
 
-달빛 한옥과 사라나 캐릭터를 중심으로 만든 반응형 사주 홈페이지.
+HTML/CSS/JS만 사용하는 정적 운명 대시보드. 가상 데이터를 JSON으로 입력·수정·저장·내보내기하며 데이터베이스와 백엔드를 사용하지 않습니다.
 
-## 실행
-`python3 -m http.server 8080` 실행 후 `http://localhost:8080` 열기. 빌드나 API 키 불필요.
+서비스: https://kanbada38-dotcom.github.io/sarana-saju-garden/
 
-## 기능
-- 양력 생일 / 한국 표준시 입력 → 절기 기반 년·월·일·시주 계산
-- 시간 모름 선택 시 시주 숨김
-- 일간 오행 기반 창작 캐릭터와 자기성찰 문구
-- 두 사람 일간을 이용한 대화 질문 (궁합 예측/점수 아님)
-- 한국 날짜 기준 창작 오늘의 편지
-- 사주 배움터, 용어 사전, 갤러리
-- 동의한 경우 캐릭터 이름·오행·저장일만 localStorage 저장/삭제
+## 화면
+- index.html: 운명 대시보드 / 프로필 / 운세 기록 / 궁합 / 일정 / 조사 안내 / JSON 관리
+- garden.html: 기존 달빛 한옥 사라나 홈페이지, 사주 계산·용어 사전·갤러리
 
-## 계산 범위
-lunar-javascript 1.7.7 (MIT). 양력 1901년~오늘. 일주는 자정 교체(sect 2), 절기 연월주. 한국 표준시 입력을 그대로 사용. 출생지 진태양시 및 과거 서머타임 미보정. 음력 직접 입력, 대운·용신 분석 미지원. 절입 경계의 정밀 감정에는 별도 검증 필요.
+## 데이터 관리
+- 최초 예시: data/demo.json (`schemaVersion: 1`, `profiles`, `matches`, `events`)
+- 프로필: 이름·양력 생일·시각·대표 오행·소개·운세 4종 점수·오행 5종 비율·주간 점수 7개·메모
+- 인연: 두 프로필 참조·가상 궁합 점수·메모
+- 일정: 날짜·제목·분류·메모
+- 편집은 브라우저 localStorage의 `sarana-dashboard-v1`에 JSON 문자열로 보관합니다. 데이터베이스가 아닙니다.
+- 다른 브라우저/기기로 이동할 때 JSON 내보내기 → 가져오기.
+- 전체 JSON 직접 수정과 가져오기는 검증 후 대체 확인을 거칩니다. 1MB/배열당 200개 제한.
+- 0~100 점수, 오행 합계 100, 날짜·시각, 고유 ID, 궁합 참조를 검증합니다. 실패 시 기존 데이터 유지.
+- 프로필 삭제 시 연결된 인연도 삭제합니다. 일정·인연도 삭제 가능합니다.
+- 브라우저 편집은 GitHub demo.json 원본을 변경하지 않으며 사용자 간 공유되지 않습니다.
+- 외부 API, 로그인, 결제, 추적 도구, 서버 저장 없음.
 
-캐릭터·운세·궁합 문장은 창작 자기성찰 콘텐츠이며 전문 종합 감정이 아님.
-회원가입·결제·메일 발송·서버 저장은 구현 범위에 포함되지 않음.
+## 웹 조사
+일반적 특징과 원문 링크: RESEARCH.md 및 프로그램 안내 화면. “사라나 운명 프로그램”은 이 프로젝트의 명칭입니다.
 
-## GitHub Pages 자동 배포
-1. 새 GitHub 저장소에 이 폴더 내용을 업로드 (index.html이 루트에 위치).
-2. Settings → Pages → Source를 GitHub Actions로 설정.
-3. Actions → Deploy Garden to GitHub Pages 워크플로 실행.
-4. 성공한 deployment의 page_url로 접속. 이후 main 수정 시 자동 재배포.
+## 계산과 가상 값
+lunar-javascript 1.7.7로 명식만 계산. 양력/KST 입력, 자정 일주 변경, 출생지 진태양시 및 과거 서머타임 미보정. 대표 오행·점수·비율·주간 그래프·궁합은 JSON의 가상 값이며 계산 결과나 전문 예측이 아닙니다. 대운·용신·음력 직접 입력 미지원.
 
-라이브러리 저작권은 assets/lunar-LICENSE.txt 참조. 이미지 생성 자산은 assets/sarana-moonlight.webp.
+## 실행 및 확인
+HTTP 서버 필요 (`fetch`로 JSON을 읽으므로 file:// 직접 열기 대신 서버 사용).
 
-## 검증
-node --check app.js
+```sh
+python3 -m http.server 8080
+node --check dashboard.js
+node data.test.cjs
 node verify.cjs
+```
+
+http://localhost:8080 접속. npm 설치나 빌드 없이 실행됩니다.
+
+## 배포
+main 푸시 → .github/workflows/deploy.yml → 정적 파일만 _site에 복사 → GitHub Pages 자동 배포.
+
+라이브러리 MIT 고지: assets/lunar-LICENSE.txt. 사라나 일러스트는 사용자 제공 참조로 AI 제작.
